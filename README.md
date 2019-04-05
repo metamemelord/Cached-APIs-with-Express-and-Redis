@@ -39,7 +39,7 @@ npm install
 
 ### Steps:
 >  1. Spin up the application.
->  2. Post sample data of form: ```{"field_1":<Some string value>,"field_2":<Some string value>,"array_1":[<Some values>]}```. I posted 150 values for this test.
+>  2. Perform ```POST http://<host>:4000``` with body of form ```{"field_1":<Some string value>,"field_2":<Some string value>,"array_1":[<Some values>]}```. I posted 150 values for this test.
 >  3. Perform ```GET http://<host>:4000?skip=<number of items to skip>&limit=<limit of number of result>``` in pair for multiple (skip, limit) tuples and time the results.
 
 
