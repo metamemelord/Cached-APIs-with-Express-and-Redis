@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const Model = require("./user");
+const Model = require("./model");
 const { redisClient } = require("./caching");
 
 const app = express();
