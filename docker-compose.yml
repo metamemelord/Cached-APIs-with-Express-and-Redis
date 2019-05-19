@@ -1,0 +1,13 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+  mongo:
+    image: mongo:latest
+  app:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+      - redis

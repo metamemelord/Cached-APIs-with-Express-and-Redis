@@ -26,12 +26,20 @@ app.post("*", async (req, res) => {
   });
 });
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }, error => {
-  if (!error)
+const MONGO_URI = process.env.MONGO_URI || "mongodb://mongo/test";
+
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Connected to Mongo");
     app.listen(4000, err => {
       if (!err) {
         redisClient.FLUSHALL();
         console.log("Server started!");
       }
     });
-});
+  })
+  .catch(error => {
+    console.error("Error connecting to MongoDB", error);
+    process.exit(1);
+  });

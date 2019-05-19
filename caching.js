@@ -2,7 +2,18 @@ const mongoose = require("mongoose");
 const redis = require("redis");
 const util = require("util");
 
-const client = redis.createClient("redis://localhost:6379");
+const client = redis.createClient({
+  host: "redis",
+  port: 6379
+});
+client.on("ready", () => {
+  console.log("Connected to redis");
+});
+
+client.on("error", err => {
+  console.error("Error while connecting to redis", err);
+  process.exit(1);
+});
 client.hget = util.promisify(client.hget);
 
 // Backup original exec fn
